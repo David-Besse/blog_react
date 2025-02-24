@@ -1,0 +1,57 @@
+.profile {
+  font-family: sans-serif;
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.profile form {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile p {
+  margin-bottom: 10px;
+}
+
+.profile label {
+  display: block;
+  margin-top: 10px;
+}
+
+.profile input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.profile button {
+  height: 55px;
+  width: 150px;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.profile button#logout-button {
+  background-color: #b3b3b3d5;
+}
+
+.profile button:hover {
+  scale: 1.05;
+  border: 1px solid black;
+}
