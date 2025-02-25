@@ -4,7 +4,17 @@ import "./header.css";
 const Navigation = () => {
   return (
     <header>
-      <h1>Blog</h1>
+      <h1>
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+          id="loadHome"
+        >
+          Blog
+        </NavLink>
+      </h1>
       <nav>
         <ul>
           <li>

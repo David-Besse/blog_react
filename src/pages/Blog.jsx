@@ -10,7 +10,7 @@ const Blog = () => {
   useEffect(() => {
     async function fetchPosts() {
       const url = "http://localhost:8001/api/posts";
-      const accessToken = localStorage.getItem("accessToken");
+      const accessToken = localStorage.getItem("blog_access_token");
 
       try {
         const response = await fetch(url, {
@@ -26,6 +26,10 @@ const Blog = () => {
         }
 
         const data = await response.json();
+
+        // Order posts by id
+        data.sort((postA, postB) => postA.id - postB.id);
+
         setPosts(data);
         setLoading(false);
       } catch (err) {
@@ -37,7 +41,7 @@ const Blog = () => {
     }
 
     fetchPosts();
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, []);
 
   if (loading) {
     return <div>Loading posts...</div>;
@@ -50,13 +54,15 @@ const Blog = () => {
     <section id="blog">
       <button id="createPostButton">Créer un nouvel article</button>
       <div className="blog-container">
-        <h1>Posts</h1>
+        <h1>ARTICLES</h1>
         <ul>
           {posts.map((post) => (
             <li key={post.id}>
               <h2>{post.title}</h2>
               <p>{post.content}</p>
-              {/* Add more post details as needed */}
+              <span>
+                <a href={`/article/${post.id}`}>Lire la suite</a>
+              </span>
             </li>
           ))}
         </ul>

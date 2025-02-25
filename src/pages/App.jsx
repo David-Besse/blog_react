@@ -8,6 +8,7 @@ import Profile from "./Profile";
 import Register from "./RegisterForm";
 import Header from "./Header";
 import Footer from "./Footer";
+import EditPostForm from "./EditPostForm";
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/Login" element={<LoginPage />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/article:postId" element={<Article />} />
+          <Route path="/article/:postId" element={<Article />} />
+          <Route path="/edit/:postId" element={<EditPostForm />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Error />} />
         </Routes>
