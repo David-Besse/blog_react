@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./blog.css";
 
@@ -6,6 +7,7 @@ const Blog = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPosts() {
@@ -52,7 +54,9 @@ const Blog = () => {
   }
   return (
     <section id="blog">
-      <button id="createPostButton">Créer un nouvel article</button>
+      <button id="createPostButton" onClick={() => navigate("/create-post")}>
+        Créer un nouvel article
+      </button>
       <div className="blog-container">
         <h1>ARTICLES</h1>
         <ul>

@@ -9,6 +9,7 @@ import Register from "./RegisterForm";
 import Header from "./Header";
 import Footer from "./Footer";
 import EditPostForm from "./EditPostForm";
+import CreatePostForm from "./CreatePostForm";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/blog" element={<Blog />} />
           <Route path="/article/:postId" element={<Article />} />
           <Route path="/edit/:postId" element={<EditPostForm />} />
+          <Route path="/create-post" element={<CreatePostForm />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Error />} />
         </Routes>
