@@ -55,3 +55,10 @@
   scale: 1.05;
   border: 1px solid black;
 }
+
+.profile span {
+  font-size: 0.8em; /* Taille de la police réduite */
+  color: #adb5bd; /* Couleur du texte */
+  text-align: right; /* Alignement à droite */
+  letter-spacing: 1px;
+}

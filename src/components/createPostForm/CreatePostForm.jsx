@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./create-post.css";
@@ -9,7 +8,9 @@ async function createPost(event) {
   const dataForm = new FormData(event.target);
 
   const accessToken = localStorage.getItem("blog_access_token");
-  const userId = localStorage.getItem("blog_user_id");
+
+  const user = JSON.parse(localStorage.getItem("blog_user"));
+
   const url = "http://localhost:8001/api/posts";
 
   try {
@@ -24,7 +25,7 @@ async function createPost(event) {
         content: dataForm.get("newcontent"),
         image_url:
           dataForm.get("newimage") === "" ? "*" : dataForm.get("newimage"),
-        user_id: userId,
+        user_id: parseInt(user.id),
       }),
     });
 
@@ -38,38 +39,8 @@ async function createPost(event) {
   }
 }
 
-async function fetchCurrentUser() {
-  const apiUrl = "http://localhost:8001/api/auth/me";
-  const token = localStorage.getItem("blog_access_token");
-
-  try {
-    const response = await fetch(apiUrl, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    const result = await response.json();
-
-    if (!response.ok || !result) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    localStorage.setItem("blog_user_id", result.id);
-  } catch (error) {
-    console.error("Error fetching current user:", error);
-    throw error;
-  }
-}
-
 const CreatePostForm = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchCurrentUser();
-  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

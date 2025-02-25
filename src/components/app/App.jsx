@@ -1,15 +1,15 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./HomePage";
-import Blog from "./Blog";
-import Article from "./Article";
-import Error from "./Error";
-import LoginPage from "./LoginPage";
-import Profile from "./Profile";
-import Register from "./RegisterForm";
-import Header from "./Header";
-import Footer from "./Footer";
-import EditPostForm from "./EditPostForm";
-import CreatePostForm from "./CreatePostForm";
+import HomePage from "../homePage/HomePage";
+import Blog from "../blog/Blog";
+import Article from "../article/Article";
+import Error from "../error/Error";
+import LoginPage from "../loginPage/LoginPage";
+import Profile from "../profile/Profile";
+import Register from "../registerForm/RegisterForm";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+import EditPostForm from "../editPostForm/EditPostForm";
+import CreatePostForm from "../createPostForm/CreatePostForm";
 
 const App = () => {
   return (

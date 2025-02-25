@@ -1,8 +1,24 @@
+import { useNavigate } from "react-router-dom";
+import registerUser from "../../api/registerUser";
+
 import "./register.css";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      await registerUser(event);
+      navigate("/login");
+    } catch (error) {
+      console.error("Error registering user:", error);
+    }
+  };
+
   return (
-    <form className="register-form">
+    <form className="register-form" onSubmit={(event) => handleSubmit(event)}>
       <label>Nom d&apos;utilisateur</label>
       <input
         type="text"
@@ -16,7 +32,7 @@ const RegisterForm = () => {
       <input
         type="email"
         id="email"
-        placeholder="email@msn.com"
+        placeholder="email@domain"
         name="email"
         autoComplete="email"
         required

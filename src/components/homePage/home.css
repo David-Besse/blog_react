@@ -1,0 +1,48 @@
+/* home.css */
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333; /* Couleur de texte par défaut */
+}
+
+.homePage_button_container {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espace entre les boutons */
+}
+
+.loginLink,
+.registerLink {
+  display: inline-block;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.loginLink {
+  background-color: #007bff; /* Bleu pour le bouton de connexion */
+  color: white;
+}
+
+.registerLink {
+  background-color: #28a745; /* Vert pour le bouton d'inscription */
+  color: white;
+}
+
+.loginLink:hover,
+.registerLink:hover { /* Légère opacité au survol */
+  scale: 1.1;
+}
+
+/* Optionnel : pour les écrans plus petits */
+@media (max-width: 600px) {
+  .homePage_button_container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+

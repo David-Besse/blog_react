@@ -61,6 +61,11 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #d9d9d9;
+  background-color: whitesmoke;
   color: #000000;
+}
+
+nav .disconnect {
+  border: #000000 1px solid;
+  font-size: 1.1em;
 }

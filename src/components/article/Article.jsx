@@ -1,72 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import getPost from "../../api/getPostByPostId";
+import deletePost from "../../api/deletePost";
+
 import "./article.css";
-
-async function getPost(postId) {
-  if (!postId) {
-    throw new Error("postId is required");
-  }
-
-  const url = `http://localhost:8001/api/posts/${postId}`;
-  const accessToken = localStorage.getItem("blog_access_token");
-
-  if (!accessToken) {
-    throw new Error("Access token is required");
-  }
-
-  try {
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching blog post:", error);
-    throw error;
-  }
-}
-
-async function deletePost(postId) {
-  if (!postId) {
-    throw new Error("postId is required");
-  }
-
-  const url = `http://localhost:8001/api/posts/${postId}`;
-  const accessToken = localStorage.getItem("blog_access_token");
-
-  if (!accessToken) {
-    throw new Error("Access token is required");
-  }
-
-  try {
-    const response = await fetch(url, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    alert("Suppression effectuée !");
-  } catch (error) {
-    alert("Suppression echouée !");
-    console.error("Error deleting blog post:", error);
-    throw error;
-  }
-}
 
 const Article = () => {
   const { postId } = useParams();
@@ -154,4 +91,3 @@ const Article = () => {
 };
 
 export default Article;
-

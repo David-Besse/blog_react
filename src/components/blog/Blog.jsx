@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import getPosts from "../../api/getPosts";
 
 import "./blog.css";
 
@@ -10,39 +11,18 @@ const Blog = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function fetchPosts() {
-      const url = "http://localhost:8001/api/posts";
-      const accessToken = localStorage.getItem("blog_access_token");
-
+    const fetchPost = async () => {
       try {
-        const response = await fetch(url, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        // Order posts by id
-        data.sort((postA, postB) => postA.id - postB.id);
-
+        const data = await getPosts();
         setPosts(data);
         setLoading(false);
-      } catch (err) {
-        setError(err);
-        console.error("Error fetching blog posts:", err);
+      } catch (error) {
+        setError(error);
         setLoading(false);
         setPosts([]);
       }
-    }
-
-    fetchPosts();
+    };
+    fetchPost();
   }, []);
 
   if (loading) {

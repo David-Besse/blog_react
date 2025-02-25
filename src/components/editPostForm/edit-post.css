@@ -1,0 +1,34 @@
+/* styles/edit-post.css */
+.edit-post h1 {
+  color: #333;
+}
+
+.edit-post form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-post label {
+  margin: 10px 0 5px;
+}
+
+.edit-post input,
+.edit-post textarea {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-post button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-post button:hover {
+  background-color: #218838;
+}

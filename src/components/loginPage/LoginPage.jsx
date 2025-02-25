@@ -1,11 +1,13 @@
+import fetchCurrentUser from "../../api/fetchCurrentUser";
+
 import "./login.css";
 
 const LoginPage = () => {
 
-  async function handleSubmit(evt) {
-    evt.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    const formData = new FormData(evt.target);
+    const formData = new FormData(event.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password");
 
@@ -20,20 +22,23 @@ const LoginPage = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const { access_token } = await response.json();
+      const { access_token: token } = await response.json();
+      localStorage.setItem("blog_access_token", token);
 
-      localStorage.setItem("blog_access_token", access_token);
+      const user = await fetchCurrentUser(token);
+      localStorage.setItem("blog_user", JSON.stringify(user));
 
-      alert("Login successful!");
-      window.location.href = "/blog";
+      localStorage.setItem("blog_user_isActive", true);
+
+      window.location.replace("/blog");
     } catch (error) {
       console.error("Error during login:", error);
     }
-  }
+  };
 
   return (
     <div className="login">
-      <form onSubmit={(evt) => handleSubmit(evt)}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
         <input
           type="email"
